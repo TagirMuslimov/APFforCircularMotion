@@ -18,20 +18,20 @@ URI3 = 'radio://0/80/2M/E7E7E7E713'
 
 MIN_BAT = 2.8
 
-CX = 0.36
-CY = 0.17
+CX = 0.43
+CY = 0.01
 k = 5.0
-R = 0.7
+R = 0.65
 v_f = 0.5
 D_12 = 3*math.pi / 2
 D_23 = 3*math.pi / 2
-v_cruis = 0.3
+v_cruis = 0.5
 k_f = 1
 
 T_Z = 0.3
 v_z = 0.05
 
-safety_radius = 0.5
+safety_radius = 0.3
 eta_vf = 2.0
 eta_apf = 0.2
 
@@ -120,7 +120,7 @@ def write_log(**log_vars):
 def forward_circle(cf1, cf2, cf3):
     global CX
     global CY
-    steps = 700
+    steps = 300
     for i in range(steps):
 
         # CX += 0.001
@@ -267,7 +267,7 @@ def get_angle_APF(distance_ab, v, angle, px_a, py_a, px_b, py_b):
 def velocity(distance_ab, p_12, p_23):
         if distance_ab < safety_radius:
             v1 = v_cruis
-            v2 = v_cruis
+            v2 = v_cruis - 0.2
         else:
             v1 = v_cruis + v_f * (2 / math.pi) * math.atan(k_f * (p_12 - D_12))
             v2 = v_cruis + v_f * (2 / math.pi) * math.atan(k_f *
