@@ -18,14 +18,14 @@ URI3 = 'radio://0/80/2M/E7E7E7E713'
 
 MIN_BAT = 2.8
 
-CX = 0.0
-CY = 0.0
+CX = 0.36
+CY = 0.17
 k = 5.0
-R = 1.0
+R = 0.7
 v_f = 0.5
 D_12 = 3*math.pi / 2
 D_23 = 3*math.pi / 2
-v_cruis = 0.5
+v_cruis = 0.3
 k_f = 1
 
 T_Z = 0.3
@@ -123,8 +123,8 @@ def forward_circle(cf1, cf2, cf3):
     steps = 700
     for i in range(steps):
 
-        CX += 0.001
-        CY += 0.001
+        # CX += 0.001
+        # CY += 0.001
 
         print("forward_circle" + str(i))
         print(position_estimate_cf1)
@@ -274,13 +274,6 @@ def velocity(distance_ab, p_12, p_23):
                                                     (-p_12 + D_12 + p_23 - D_23))
         v3 = v_cruis + v_f * (2 / math.pi) * math.atan(k_f * (-p_23 + D_23))
         return (v1, v2, v3)
-
-def velocity(p_12, p_23):
-    v1 = v_cruis + v_f * (2 / math.pi) * math.atan(k_f * (p_12 - D_12))
-    v2 = v_cruis + v_f * (2 / math.pi) * math.atan(k_f *
-                                                   (-p_12 + D_12 + p_23 - D_23))
-    v3 = v_cruis + v_f * (2 / math.pi) * math.atan(k_f * (-p_23 + D_23))
-    return (v1, v2, v3)
 
 
 def distance_to_centre(px, py):
